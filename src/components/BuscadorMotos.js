@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import FetchMotos from '../api/fetchMotos';
 import { MdLocationOn } from 'react-icons/md';
 import { MdPerson } from 'react-icons/md';
@@ -65,13 +66,15 @@ const BuscadorMotos = () => {
                         <p className="text-sm text-gray-600">Modelo: {moto.modelo}</p>
                         <div className="absolute right-2 top-2">
                           <button className="flex items-center text-blue-500">
+                          <Link to={`/ubicacion/${moto.id}`} className="flex items-center text-blue-500">
                             <MdLocationOn className="mr-1" />
                             Ubicación
+                          </Link>
                           </button>
-                          <button className="flex items-center text-blue-500">
-                            <MdPerson className="mr-1" />
-                            Detalles
-                          </button>
+                          <Link to={`/motos/${moto.id}`} className="flex items-center text-blue-500">
+                          <MdPerson className="mr-1" />
+                           Detalles
+                          </Link>
                         </div>
                       </div>
                     ))}
@@ -89,4 +92,5 @@ const BuscadorMotos = () => {
 };
 
 export default BuscadorMotos;
+
 
