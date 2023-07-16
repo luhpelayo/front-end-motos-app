@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import FetchMotos from '../api/fetchMotos';
+import { MdLocationOn } from 'react-icons/md';
+import { MdPerson } from 'react-icons/md';
+
 import '../index.css';
 import Menu from './Menu';
 
 const BuscadorMotos = () => {
   const [query, setQuery] = useState('');
   const [resultados, setResultados] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Estado para indicar si se está cargando
+  const [isLoading, setIsLoading] = useState(true);
 
   const buscarMotos = (e) => {
     const searchText = e.target.value.toLowerCase();
@@ -25,11 +28,10 @@ const BuscadorMotos = () => {
   };
 
   useEffect(() => {
-    // Simular una llamada a la API o carga de datos
     setTimeout(() => {
-      setIsLoading(false); // Se establece el estado de carga a falso después de un tiempo simulado
+      setIsLoading(false);
     }, 2000);
-  }, []); // El segundo argumento [] asegura que este efecto solo se ejecute una vez al montar el componente
+  }, []);
 
   return (
     <div className="flex">
@@ -47,9 +49,9 @@ const BuscadorMotos = () => {
                 className="w-full border border-gray-300 rounded p-2"
               />
             </div>
-            {isLoading ? ( // Si isLoading es verdadero, muestra el círculo de progreso
+            {isLoading ? (
               <div className="text-center">
-                <div className="spinner" /> {/* Aquí puedes agregar tu componente de círculo de progreso */}
+                <div className="spinner" />
               </div>
             ) : (
               <>
@@ -57,14 +59,20 @@ const BuscadorMotos = () => {
                 {resultados.length > 0 ? (
                   <div className="mt-4">
                     {resultados.map((moto) => (
-                      <div
-                        key={moto.id}
-                        className="bg-white rounded-lg shadow-lg p-4 mb-4"
-                      >
+                      <div key={moto.id} className="bg-white rounded-lg shadow-lg p-4 mb-4 relative">
                         <h2 className="text-lg font-bold">{moto.marca}</h2>
                         <p className="text-sm text-gray-600">Placa: {moto.placa}</p>
                         <p className="text-sm text-gray-600">Modelo: {moto.modelo}</p>
-                        {/* Render other details of the moto as needed */}
+                        <div className="absolute right-2 top-2">
+                          <button className="flex items-center text-blue-500">
+                            <MdLocationOn className="mr-1" />
+                            Ubicación
+                          </button>
+                          <button className="flex items-center text-blue-500">
+                            <MdPerson className="mr-1" />
+                            Detalles
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>
