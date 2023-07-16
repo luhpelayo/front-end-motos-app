@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,8 +39,12 @@ const Menu = () => {
         } mt-4 sm:mt-0 sm:block`}
       >
         {/* Mostrar la lista de elementos del menú en dispositivos más grandes */}
-        <li className="py-2">Inicio</li>
-        <li className="py-2">Rastrear</li>
+        <li className="py-2">
+          <Link to="/">Inicio</Link>
+        </li>
+        <li className="py-2">
+          <Link to="/BuscadorMotos">Rastrear</Link>
+        </li>
         <li className="py-2">Qr</li>
         <li className="py-2">Salir</li>
       </ul>

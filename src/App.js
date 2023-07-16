@@ -1,21 +1,20 @@
 import React from 'react';
-//import Motos from './components/BuscadorMotos';
-//import Motos from './api/fetchMotos';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BuscadorMotos from './components/BuscadorMotos';
 import WelcomeView from './components/WelcomeView';
-import Menu from './components/Menu';
-import 'tailwindcss/tailwind.css';
+import NotFound from './components/NotFound';
 
-function App() {
+const App = () => {
   return (
-    <div className="flex">
-      <Menu />
-      <div className="w-3/4 p-4">
-        
-        <WelcomeView />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<WelcomeView />} />
+        <Route path="/BuscadorMotos" element={<BuscadorMotos />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 };
-export default App;
 
+export default App;
